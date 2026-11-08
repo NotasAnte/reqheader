@@ -31,3 +31,7 @@ Extensión de Chrome (Manifest V3) para modificar cabeceras HTTP, al estilo de M
 
 - Chrome solo permite la operación «añadir» en algunas cabeceras de petición (`accept`, `cookie`, `user-agent`…). El popup te avisa si eliges otra.
 - Hay cabeceras que `declarativeNetRequest` no deja modificar, y las peticiones de otras extensiones no se ven afectadas.
+
+## Licencia
+
+[MIT](LICENSE)
