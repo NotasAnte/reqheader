@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>ReqHeader</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <aside class="rail">
+    <div id="profiles" class="rail-profiles"></div>
+    <button id="addProfile" class="rail-add" title="Nuevo perfil" aria-label="Nuevo perfil">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>
+    </button>
+  </aside>
+
+  <main>
+    <header class="top">
+      <label class="swatch" title="Color del perfil">
+        <input id="profileColor" type="color" aria-label="Color del perfil">
+      </label>
+      <input id="profileName" class="profile-name" maxlength="64" aria-label="Nombre del perfil" spellcheck="false">
+      <div class="top-actions">
+        <button id="pause" class="icon-btn" aria-pressed="false" title="Pausar">
+          <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5v9M10.5 3.5v9"/></svg>
+          <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.5 8z" class="fill"/></svg>
+        </button>
+        <div class="menu-wrap">
+          <button id="menuBtn" class="icon-btn" title="Más opciones" aria-haspopup="menu" aria-expanded="false">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="3.5" cy="8" r="1.1" class="fill"/><circle cx="8" cy="8" r="1.1" class="fill"/><circle cx="12.5" cy="8" r="1.1" class="fill"/></svg>
+          </button>
+          <div id="menu" class="menu" role="menu" hidden>
+            <button role="menuitem" data-action="duplicate">Duplicar perfil</button>
+            <button role="menuitem" data-action="export">Exportar perfiles…</button>
+            <button role="menuitem" data-action="import">Importar perfiles…</button>
+            <hr>
+            <button role="menuitem" data-action="delete" class="danger">Eliminar perfil</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div id="paused" class="banner banner-paused" hidden>En pausa: no se está modificando ninguna cabecera.</div>
+    <div id="errors" class="banner banner-error" hidden></div>
+    <div id="importBanner" class="banner banner-import" hidden>
+      Elige un archivo JSON exportado desde ReqHeader o ModHeader.
+      <button type="button">Elegir archivo…</button>
+    </div>
+
+    <div class="content">
+      <section data-kind="requestHeaders">
+        <div class="section-head">
+          <h2>Cabeceras de petición</h2>
+          <button class="add" data-add="requestHeaders">+ Añadir</button>
+        </div>
+        <div class="rows"></div>
+      </section>
+
+      <section data-kind="responseHeaders">
+        <div class="section-head">
+          <h2>Cabeceras de respuesta</h2>
+          <button class="add" data-add="responseHeaders">+ Añadir</button>
+        </div>
+        <div class="rows"></div>
+      </section>
+
+      <section data-kind="filters">
+        <div class="section-head">
+          <h2>Filtros de URL</h2>
+          <button class="add" data-add="filters">+ Añadir</button>
+        </div>
+        <p class="hint">Sin filtros, el perfil se aplica a todas las URLs.</p>
+        <div class="rows"></div>
+      </section>
+    </div>
+
+    <footer id="footer" class="footer"></footer>
+  </main>
+
+  <datalist id="common-headers">
+    <option value="Authorization">
+    <option value="User-Agent">
+    <option value="Cookie">
+    <option value="Accept">
+    <option value="Accept-Language">
+    <option value="Cache-Control">
+    <option value="Content-Type">
+    <option value="Origin">
+    <option value="Referer">
+    <option value="X-Forwarded-For">
+    <option value="X-Requested-With">
+    <option value="Access-Control-Allow-Origin">
+    <option value="Access-Control-Allow-Headers">
+    <option value="Access-Control-Allow-Methods">
+    <option value="Access-Control-Allow-Credentials">
+    <option value="Content-Security-Policy">
+    <option value="Set-Cookie">
+    <option value="X-Frame-Options">
+  </datalist>
+  <input id="importFile" type="file" accept="application/json,.json" hidden>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
